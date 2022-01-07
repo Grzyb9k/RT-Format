@@ -21,7 +21,7 @@ class DemoDataSeeder extends Seeder
         Seller::factory()->count(random_int(10,50))->create();
         Product::factory()->count(random_int(10,50))->create();
 
-        Invoice::factory()->count(random_int(10,20))->create()->each(function ($invoice) {
+        Invoice::factory()->count(random_int(20,40))->create()->each(function ($invoice) {
             $invoice->products()->attach(Product::inRandomOrder()->first()->id);
         });
     }
