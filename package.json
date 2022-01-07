@@ -10,9 +10,26 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.1",
         "axios": "^0.21",
+        "browser-sync": "^2.27.7",
+        "browser-sync-webpack-plugin": "^2.3.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "postcss": "^8.4.5",
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.46.0",
+        "sass-loader": "^12.4.0",
+        "tailwindcss": "^3.0.11",
+        "vue-loader": "^16.8.3"
+    },
+    "dependencies": {
+        "daisyui": "^1.21.0",
+        "dayjs": "^1.10.7",
+        "litepie-datepicker": "^1.0.14",
+        "tua-body-scroll-lock": "^1.2.1",
+        "vue": "^3.2.26",
+        "vue-material-design-icons": "^5.0.0",
+        "vue-router": "^4.0.12"
     }
 }
