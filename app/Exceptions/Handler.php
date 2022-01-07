@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\Mail\ErrorMail;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +41,17 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+    public function report($e)
+    {
+        if ($e instanceof \Exception) {
+            $error['code'] = $e->getCode();
+            $error['line'] = $e->getLine();
+            $error['message'] = $e->getMessage();
+
+            Log::error($error['message'] . ' | ' . Route::getCurrentRoute()->getActionName() . ' | CODE ' . $error['code']);
+
+        }
+        return parent::report($e);
     }
 }
