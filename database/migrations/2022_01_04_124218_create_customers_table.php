@@ -16,6 +16,7 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('vat_nr', 30)->nullable()->unique();
+            $table->string('name', 255)->nullable();
             $table->timestamps();
             $table->softDeletes('deleted_at');
         });

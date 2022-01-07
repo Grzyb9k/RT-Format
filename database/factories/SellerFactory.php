@@ -15,6 +15,7 @@ class SellerFactory extends Factory
     {
         return [
             'vat_nr' => $this->faker->numerify('##########'),
+            'name' => $this->faker->word(),
             'created_at' =>  $this->faker->dateTimeBetween('-10 years'),
         ];
     }

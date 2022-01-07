@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Invoice extends Model
 {
-    use HasFactory;
-
+    use HasFactory, SoftDeletes;
+    protected $fillable = ['seller_id', 'customer_id', 'amount', 'invoice_date'];
     protected static function boot()
     {
         parent::boot();
@@ -21,16 +22,21 @@ class Invoice extends Model
 
     public function seller()
     {
-        return $this->hasOne(Seller::class);
+        return $this->belongsTo(Seller::class);
     }
     public function customer()
     {
-        return $this->hasOne(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function products()
     {
         return $this->belongsToMany(Product::class, 'invoice_product');
+    }
+
+    public function product()
+    {
+        return $this->belongsToMany(Product::class, 'invoice_product')->first();
     }
     public function generateInvoiceNumber(int $id): string
     {
